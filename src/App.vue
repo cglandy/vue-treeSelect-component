@@ -23,13 +23,30 @@ export default {
     return { 
       isClearable:true,     // 可清空（可选）
       isAccordion:true,     // 可收起（可选）
-      valueId:20,            // 初始ID（可选）
       props:{               // 配置项（必选）
-        value: 'id',
-        label: 'name',
+        value: 'value',
+        label: 'label',
         children: 'children',
+        name:"name"
         // disabled:true
       },
+      list1:[
+        {
+          label:"按钮",
+          name:"el-button",
+          value:"123"
+        },
+        {
+          label:"按钮",
+          name:"el-button",
+          value:"124"
+        },
+        {
+          label:"按钮",
+          name:"el-button",
+          value:"125"
+        }
+      ],
       // 选项列表（必选）
       list:[
         {id:1,parentId:0,name:"一级菜单A",rank:1},
@@ -78,12 +95,13 @@ export default {
   computed:{
     /* 转树形数据 */
     optionData(){
-      let cloneData = JSON.parse(JSON.stringify(this.list))      // 对源数据深度克隆
-      return  cloneData.filter(father=>{                      // 循环所有项，并添加children属性
-          let branchArr = cloneData.filter(child=>father.id == child.parentId);       // 返回每一项的子级数组
-          branchArr.length>0 ? father.children=branchArr : ''   //给父级添加一个children属性，并赋值
-          return father.parentId==0;      //返回第一层
-      });
+      // let cloneData = JSON.parse(JSON.stringify(this.list))      // 对源数据深度克隆
+      // return  cloneData.filter(father=>{                      // 循环所有项，并添加children属性
+      //     let branchArr = cloneData.filter(child=>father.id == child.parentId);       // 返回每一项的子级数组
+      //     branchArr.length>0 ? father.children=branchArr : ''   //给父级添加一个children属性，并赋值
+      //     return father.parentId==0;      //返回第一层
+      // });
+      return this.list1;
     }
   },
   methods:{

@@ -1,5 +1,5 @@
 <template>
-  <el-select :value="valueTitle" :clearable="clearable" @clear="clearHandle">
+  <el-select ref="select" :value="valueTitle" :clearable="clearable" @clear="clearHandle">
     <el-option :value="valueTitle" :label="valueTitle" class="options">
       <el-tree  id="tree-option"
         ref="selectTree"
@@ -84,7 +84,8 @@ export default {
       this.valueTitle = node[this.props.label]
       this.valueId = node[this.props.value]
       this.$emit('getValue',this.valueId)
-      this.defaultExpandedKey = []
+      this.defaultExpandedKey = [];
+      this.$refs.select.blur();
     },
     // 清除选中
     clearHandle(){
